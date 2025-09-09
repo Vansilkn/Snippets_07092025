@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+
+{% block title %}Просмотр сниппетов{% endblock %}
+
 {% block content %}
 
 <!-- Begin page content -->
@@ -30,17 +33,13 @@
                     </thead>
                     <tbody>
 
-                    <tr>
-                        <td scope="row">1</td>
-                        <td><a href="/snippets/1">Пример сниппета</a></td>
-                        <td>23.05.2019 11:32</td>
-                    </tr>
-
-                    <tr>
-                        <td scope="row">2</td>
-                        <td><a href="/snippets/2">И ещё один пример</a></td>
-                        <td>23.05.2019 11:34</td>
-                    </tr>
+                        {% for snippets in ls_snippets %}
+                            <tr>
+                                <td scope="row">{{ snippets.id }} </td>
+                                <td><a href="{% url "snippets_detail" snippets.id %}">{{snippets.name}}</a></td>
+                                <td>{{snippets.creation_date}}</td>
+                            </tr>
+                        {% endfor %} 
 
                     </tbody>
                 </table>
