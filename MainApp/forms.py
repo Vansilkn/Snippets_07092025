@@ -1,4 +1,4 @@
-from django.forms import ModelForm, ValidationError
+from django.forms import ModelForm, ValidationError, Textarea, TextInput
 from MainApp.models import Snippet
 
 
@@ -7,6 +7,20 @@ class SnippetForm(ModelForm):
         model = Snippet
         # Описываем поля, которые будем заполнять в форме
         fields = ['name', 'lang', 'code']    #    exclude = ['creation_date']
+        labels = {"name": "", "long": "", "code": ""}
+        widgets = {
+            "name": TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "Название сниппета",
+                "style": "max-width: 300px"
+            }),
+            "code": Textarea(attrs={
+                "placeholder": "Код сниппета",
+                "rows": 5,
+                "class": "input-large",
+                "style": "width: 50% !important; resize: vertical !important;"
+            }),
+        }
     
     
     def clean_name(self):
@@ -14,5 +28,5 @@ class SnippetForm(ModelForm):
         snippet_name = self.cleaned_data.get("name")
         if snippet_name is not None and len(snippet_name) > 3:
             return snippet_name
-        raise ValidationError("Snippet name too short.")
+        raise ValidationError("Snippet's name too short.")
     
