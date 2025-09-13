@@ -1,5 +1,5 @@
 from django.http import Http404, HttpResponse, HttpResponseNotAllowed
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from MainApp.models import Snippet
 from django.core.exceptions import ObjectDoesNotExist
 from MainApp.forms import SnippetForm
@@ -50,3 +50,38 @@ def get_snippets(request, snippet_id:int ):
     else:
         context["snippet"] = snippet
         return render(request, "pages/snippet_page.html", context)
+
+
+# Удаление данных из таблицы
+def snippets_delete(request, snippet_id:int):
+    """ Найти snippet по snippet_id или вернуть ошибку 404"""
+    if request.method == "GET" or request.method == "POST":
+        snippet = get_object_or_404(Snippet, id=snippet_id)
+        snippet.delete()
+    return redirect('snippets_list')
+
+
+def snippets_edit(request, snippets_id:int):
+    pass
+
+
+
+# Редактирование данных из таблицы
+# def snippets_edit(request, snippets_id:int):
+#     """ Удаление объекта """
+#     try:
+#         snippets = Snippet.objects.get(id = snippets_id)
+#     snippets.delete()
+#     return redirect('/')
+
+
+# # def delete_snippets_filter(request, snippets_id:int):
+# #     """ Удаление через фильтр """ 
+# #     Snippet.objects.filter(id = snippets_id).delete()
+# #     return redirect('/')
+
+
+# # def delete_snippets_all(request):
+# #     """ Удаление всех данных из таблицы """
+# #     Snippet.objects.all().delete()
+# #     return redirect('/')
