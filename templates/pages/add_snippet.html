@@ -1,10 +1,7 @@
 {% extends 'base.html' %}
 
-{% block title %}Добавление нового сниппета{% endblock %}
-
 {% block content %}
 
-<!-- Begin page content -->
 <main role="main" class="mt-3 flex-shrink-0">
     <div class="container">
         <div class="row">
@@ -16,7 +13,22 @@
 
         <div class="row">
             <div class="col">
-                <form action="" method="post">
+                <form action="{% url "create-snippet" %}" method="post">
+                    {% csrf_token %}
+                    <table>
+                        {{ form }}
+                    </table>
+
+                    {% comment %} 
+                    <form action="url" method="post">
+                        {% csrf_token %}
+                        <table>
+                            {{ form }}
+                        </table>
+                        <input type="submit" value="Submit"/>
+                     </form> 
+
+                     
                     <div class="form-group row">
                         <div class="col-8">
                             <input type="text" name="name" class="form-control form-control-lg" placeholder="Название сниппета">
@@ -35,14 +47,14 @@
                         <div class="col-8">
                             <textarea cols="96" rows="10" placeholder="Код сниппета"></textarea>
                         </div>
-                    </div>
+                    </div> 
+                    {% endcomment %}
                     <div class="form-group row">
                         <div class="col-8">
                             <input type="submit" class="btn btn-primary btn-block" value="Сохранить">
                         </div>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>

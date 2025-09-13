@@ -34,7 +34,6 @@
                         {% for snippet in snippets %}
                             <tr>
                                 <td scope="row">{{ snippet.id }} </td>
-                                {% comment %} <td><a href="/snippets/{{ snippet.id }}"> {{snippet.name}} </a></td> {% endcomment %}
                                 <td><a href="{% url "snippet_detail" snippet.id %}">{{snippet.name}}</a></td>
                                 <td>{{snippet.lang}}</td>
                                 <td>{{snippet.creation_date | date:"d F Y H:i:s"}}</td>
@@ -54,3 +53,5 @@
     </div>
 
 {% endblock %}
+
+
