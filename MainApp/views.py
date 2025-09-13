@@ -16,17 +16,22 @@ def add_snippet_page(request):
 
 def snippets_page(request):
     """ Получаем все элементы из базы данных. """
-    ls_snippets = Snippet.objects.all()
-    context = {'ls_snippets': ls_snippets}
+    snippets = Snippet.objects.all() 
+    context = {
+        'pagename':'Просмотр сниппетов',
+        'snippets': snippets
+    }
     return render(request, 'pages/view_snippets.html', context)
 
 
-def get_snippets(request, snippets_id:int ):
+def get_snippets(request, snippet_id:int ):
     """ Получаем элемент по идентификатору из базы данных. """
+    context = {'pagename':'Просмотр сниппета'}
     try:
-        snippets = Snippet.objects.get(id=snippets_id)
+        snippet = Snippet.objects.get(id=snippet_id)
     except ObjectDoesNotExist:
-        return render(request, "00000.html", {"errors": [f"""Сниппет с id={snippets_id} не найден"""]})
+        return render(request, "pages/errors.html", {"errors": [f"""Сниппет с id={snippet_id} не найден"""]})
     else:
-        context = {"snippets": snippets} 
+        context["snippet"] = snippet
         return render(request, "pages/snippet_page.html", context)
+        

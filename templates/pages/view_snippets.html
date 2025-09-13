@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
 
-{% block title %}Просмотр сниппетов{% endblock %}
-
 {% block content %}
 
 <!-- Begin page content -->
@@ -28,23 +26,28 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Название</th>
+                        <th scope="col">Язык</th>
                         <th scope="col">Дата создания</th>
                     </tr>
                     </thead>
                     <tbody>
-
-                        {% for snippets in ls_snippets %}
+                        {% for snippet in snippets %}
                             <tr>
-                                <td scope="row">{{ snippets.id }} </td>
-                                <td><a href="{% url "snippets_detail" snippets.id %}">{{snippets.name}}</a></td>
-                                <td>{{snippets.creation_date}}</td>
+                                <td scope="row">{{ snippet.id }} </td>
+                                {% comment %} <td><a href="/snippets/{{ snippet.id }}"> {{snippet.name}} </a></td> {% endcomment %}
+                                <td><a href="{% url "snippet_detail" snippet.id %}">{{snippet.name}}</a></td>
+                                <td>{{snippet.lang}}</td>
+                                <td>{{snippet.creation_date | date:"d F Y H:i:s"}}</td>
                             </tr>
-                        {% endfor %} 
-
+                        {% empty %}
+                            <tr>
+                                <td colspan="4"> Нет доступных сниппетов! </td>
+                            </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
-                <div align="right">
-                    <i style="color: gray;">Всего сниппетов: 2</i>
+                <div align = "right">
+                    <i style="color: gray;">Всего сниппетов: 2 </i>
                 </div>
             </div>
         </div>
