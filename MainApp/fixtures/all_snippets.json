@@ -1,1 +1,62 @@
-[{"model": "MainApp.snippet", "pk": 1, "fields": {"name": "Hello world Snippet", "lang": "py", "code": "print(\"Hello world\")", "creation_date": "2025-09-09T04:52:31.734Z"}}]
+[
+{
+    "model": "MainApp.snippet",
+    "pk": 1,
+    "fields": {
+        "name": "Hello world Snippet",
+        "lang": "py",
+        "code": "print(\"Hello world\")",
+        "creation_date": "2025-09-09T04:52:31.734Z"
+    }
+},
+{
+    "model": "MainApp.snippet",
+    "pk": 2,
+    "fields": {
+        "name": "Обновление данных в таблице",
+        "lang": "py",
+        "code": "def add_snippets(request): \nsnippets = Snippet.objects.get(id=2) \nsnippets.name = \"Bob\" \nsnippets.save()",
+        "creation_date": "2025-09-13T14:48:22.898Z"
+    }
+},
+{
+    "model": "MainApp.snippet",
+    "pk": 5,
+    "fields": {
+        "name": "New snippet",
+        "lang": "py",
+        "code": "print(\"New snippet\")",
+        "creation_date": "2025-09-13T19:25:58.862Z"
+    }
+},
+{
+    "model": "MainApp.snippet",
+    "pk": 7,
+    "fields": {
+        "name": "python snippet",
+        "lang": "py",
+        "code": "print(\"New snippet\")",
+        "creation_date": "2025-09-13T19:28:08.095Z"
+    }
+},
+{
+    "model": "MainApp.snippet",
+    "pk": 9,
+    "fields": {
+        "name": "python snippet 2",
+        "lang": "py",
+        "code": "print(\"New snippet\")",
+        "creation_date": "2025-09-13T19:31:35.103Z"
+    }
+},
+{
+    "model": "MainApp.snippet",
+    "pk": 10,
+    "fields": {
+        "name": "python snippet 3",
+        "lang": "py",
+        "code": "print(\"New snippet\")",
+        "creation_date": "2025-09-13T19:34:50.525Z"
+    }
+}
+]
