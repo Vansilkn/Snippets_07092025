@@ -6,8 +6,9 @@
         "name": "Hello world Snippet",
         "lang": "py",
         "code": "print(\"Hello world\")",
-        "creation_date": "2025-09-09T04:52:31.734Z",
-        "user": null
+        "creation_date": "2025-09-14T10:23:31.943Z",
+        "user": null,
+        "public": true
     }
 },
 {
@@ -18,29 +19,32 @@
         "lang": "py",
         "code": "def add_snippets(request): \nsnippets = Snippet.objects.get(id=2) \nsnippets.name = \"Bob\" \nsnippets.save()",
         "creation_date": "2025-09-13T14:48:22.898Z",
-        "user": null
+        "user": null,
+        "public": true
     }
 },
 {
     "model": "MainApp.snippet",
     "pk": 5,
     "fields": {
-        "name": "New snippet",
+        "name": "New snippet 1",
         "lang": "py",
         "code": "print(\"New snippet\")",
-        "creation_date": "2025-09-13T19:25:58.862Z",
-        "user": null
+        "creation_date": "2025-09-14T10:45:20.361Z",
+        "user": null,
+        "public": true
     }
 },
 {
     "model": "MainApp.snippet",
     "pk": 7,
     "fields": {
-        "name": "python snippet",
+        "name": "python snippet 1",
         "lang": "py",
         "code": "print(\"New snippet\")",
-        "creation_date": "2025-09-13T19:28:08.095Z",
-        "user": null
+        "creation_date": "2025-09-14T12:00:49.346Z",
+        "user": 1,
+        "public": true
     }
 },
 {
@@ -51,7 +55,8 @@
         "lang": "py",
         "code": "print(\"New snippet\")",
         "creation_date": "2025-09-13T19:31:35.103Z",
-        "user": null
+        "user": 1,
+        "public": true
     }
 },
 {
@@ -61,8 +66,69 @@
         "name": "python snippet 3",
         "lang": "py",
         "code": "print(\"Hello world\")",
-        "creation_date": "2025-09-14T09:37:42.488Z",
-        "user": 1
+        "creation_date": "2025-09-14T12:00:26.688Z",
+        "user": 1,
+        "public": false
+    }
+},
+{
+    "model": "MainApp.snippet",
+    "pk": 12,
+    "fields": {
+        "name": "python snippet 4",
+        "lang": "py",
+        "code": "print('Private')",
+        "creation_date": "2025-09-14T12:01:04.716Z",
+        "user": 1,
+        "public": false
+    }
+},
+{
+    "model": "MainApp.snippet",
+    "pk": 13,
+    "fields": {
+        "name": "python snippet 6",
+        "lang": "py",
+        "code": "print(\"\")",
+        "creation_date": "2025-09-14T13:04:31.350Z",
+        "user": 2,
+        "public": false
+    }
+},
+{
+    "model": "MainApp.snippet",
+    "pk": 14,
+    "fields": {
+        "name": "python snippet 7",
+        "lang": "py",
+        "code": "print(\"\")",
+        "creation_date": "2025-09-14T13:05:02.661Z",
+        "user": 2,
+        "public": true
+    }
+},
+{
+    "model": "MainApp.snippet",
+    "pk": 15,
+    "fields": {
+        "name": "python snippet 8",
+        "lang": "py",
+        "code": "print(\"\")",
+        "creation_date": "2025-09-14T13:05:55.379Z",
+        "user": 3,
+        "public": true
+    }
+},
+{
+    "model": "MainApp.snippet",
+    "pk": 16,
+    "fields": {
+        "name": "python snippet 9",
+        "lang": "py",
+        "code": "print(\"\")",
+        "creation_date": "2025-09-14T13:06:24.917Z",
+        "user": 3,
+        "public": false
     }
 }
 ]
