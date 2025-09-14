@@ -29,6 +29,7 @@
                         <th scope="col">Язык</th>
                         <th scope="col">Дата создания</th>
                         <th scope="col">Действие</th>
+                        <th scope="col">Пользователь</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -55,6 +56,9 @@
                                             <button type="submit" class="btn btn-danger">Delete</button>
                                         </form>
                                     </div>
+                                </td>
+                                <td>
+                                    {{ snippet.user.username }}
                                 </td>
                             </tr>
                         {% empty %}
