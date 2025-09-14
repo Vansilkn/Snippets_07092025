@@ -39,9 +39,10 @@
             {% else %}
                 <div class="navbar-nav mr-right nav-item dropdown dropdown-menu-right">
                     <a class="btn btn-outline-primary my-2 my-sm-0 dropdown-toggle" href="#" id="navbarDropdown"
-                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Авторизация</a>
+                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Авторизация</a> &nbsp;&nbsp; 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <form class="w-100 px-4 py-3" action="{% url "login" %}" method="post">{% csrf_token %}
+                        <form class="w-100 px-4 py-3" action="{% url "login" %}" method="post">
+                            {% csrf_token %}
                             <div class="form-group form-inline">
                                 <input type="text" name="username" class="form-control" placeholder="Username" required>
                             </div>
@@ -53,6 +54,7 @@
                         <div class="dropdown-divider"></div>
                     </div>
                 </div>
+                {# Show login errors #}
                 {% if errors %}
                     <ul>
                         {% for error in errors %}
@@ -60,6 +62,7 @@
                         {% endfor %}
                     </ul>
                 {% endif %}
+                <a style="padding-left: 10px;" href="{% url "register" %}" class="btn btn-info">Регистрация</a>
             {% endif %}
         </div>
     </nav>
