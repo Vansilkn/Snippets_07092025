@@ -3,6 +3,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from MainApp.models import Snippet
 from django.core.exceptions import ObjectDoesNotExist
 from MainApp.forms import SnippetForm
+from django.contrib import auth
+from django.shortcuts import redirect
+
 
 
 def index_page(request):
@@ -80,3 +83,22 @@ def snippets_edit(request, snippet_id:int):
         snippet.save()
         return redirect("snippets_list") # URL для списка сниппитов 
 
+
+def login(request):
+   if request.method == 'POST':
+       username = request.POST.get("username")
+       password = request.POST.get("password")
+       # print("username =", username)
+       # print("password =", password)
+       user = auth.authenticate(request, username=username, password=password)
+       if user is not None:
+           auth.login(request, user)
+       else:
+           # Return error message
+           pass
+   return redirect(to='home')
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect(to='home')
