@@ -11,7 +11,7 @@ def index_page(request):
 
 
 def add_snippet_page(request):
-    # Сщздаем пустую форму при запросе GET
+    # Создаем пустую форму при запросе GET
     if request.method == "GET":
         form = SnippetForm()
         context = {
@@ -61,27 +61,22 @@ def snippets_delete(request, snippet_id:int):
     return redirect('snippets_list')
 
 
-def snippets_edit(request, snippets_id:int):
-    pass
+def snippets_edit(request, snippet_id:int):
+    """ Редактирование сниппета """
+    сontext = {'pagename': 'Обновление сниппета'}
+    snippet = get_object_or_404(Snippet, id=snippet_id)
 
+    # Создаем форму на основе данных snippets'а при запросе GET
+    if request.method == "GET":
+        form = SnippetForm(instance=snippet)
+        return render(request, 'pages/add_snippet.html', сontext | {"form": form})
+    
+    # Получае данные из формы и на их основе обновляем сниппет, сохраняя его в БД
+    if request.method == "POST":
+        data_form = request.POST
+        snippet.name = data_form["name"]
+        snippet.lang = data_form["lang"]
+        snippet.code = data_form["code"]
+        snippet.save()
+        return redirect("snippets_list") # URL для списка сниппитов 
 
-
-# Редактирование данных из таблицы
-# def snippets_edit(request, snippets_id:int):
-#     """ Удаление объекта """
-#     try:
-#         snippets = Snippet.objects.get(id = snippets_id)
-#     snippets.delete()
-#     return redirect('/')
-
-
-# # def delete_snippets_filter(request, snippets_id:int):
-# #     """ Удаление через фильтр """ 
-# #     Snippet.objects.filter(id = snippets_id).delete()
-# #     return redirect('/')
-
-
-# # def delete_snippets_all(request):
-# #     """ Удаление всех данных из таблицы """
-# #     Snippet.objects.all().delete()
-# #     return redirect('/')

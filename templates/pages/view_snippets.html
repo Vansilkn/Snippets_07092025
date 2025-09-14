@@ -28,7 +28,7 @@
                         <th scope="col">Название</th>
                         <th scope="col">Язык</th>
                         <th scope="col">Дата создания</th>
-                        <th scope="col">Действия</th>
+                        <th scope="col">Действие</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -37,17 +37,24 @@
                                 <td scope="row">{{ snippet.id }} </td>
                                 <td>
                                     <a href="{% url "snippet_detail" snippet.id %}">{{snippet.name}}</a>
+                                    <a href="{% url "snippet-edit" snippet.id %}">
+                                        <i style="color: blue;" class="bi bi-pencil-square"></i>
+                                    </a>
                                     <a href="{% url "snippet-delete" snippet.id %}">
-                                        <i style="color: blue;" class="bi bi-trash"></i>
+                                        <i style="color: red;" class="bi bi-trash"></i>
                                     </a>
                                 </td>
                                 <td>{{snippet.lang}}</td>
                                 <td>{{snippet.creation_date | date:"d F Y H:i:s"}}</td>
                                 <td>
-                                    <form action="{%  url "snippet-delete" snippet.id %}" method="post">
-                                        {% csrf_token %}
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
+                                    <div style="display: flex; flex-direction: row;"> 
+                                        <a href="{%  url "snippet-edit" snippet.id %}" class="btn btn-primary">Редактировать</a>
+                                        &nbsp;&nbsp;
+                                        <form action="{%  url "snippet-delete" snippet.id %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         {% empty %}
