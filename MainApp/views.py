@@ -5,12 +5,22 @@ from django.core.exceptions import ObjectDoesNotExist
 from MainApp.forms import SnippetForm
 from django.contrib import auth
 from django.shortcuts import redirect
-
+from django.contrib.auth.decorators import login_required
 
 
 def index_page(request):
     context = {'pagename': 'PythonBin'}
     return render(request, 'pages/index.html', context)
+
+
+@login_required
+def my_snippets(request):
+    snippets = Snippet.objects.filter(user=request.user)
+    context = {
+        "pagename": "Мои сниппеты",
+        "snippets": snippets
+    }
+    return render(request, "pages/view_snippets.html", context)
 
 
 def add_snippet_page(request):
@@ -69,6 +79,7 @@ def snippets_delete(request, snippet_id:int):
     return redirect('snippets_list')
 
 
+@login_required
 def snippets_edit(request, snippet_id:int):
     """ Редактирование сниппета """
     сontext = {'pagename': 'Обновление сниппета'}
@@ -93,17 +104,19 @@ def login(request):
    if request.method == 'POST':
        username = request.POST.get("username")
        password = request.POST.get("password")
-       # print("username =", username)
-       # print("password =", password)
        user = auth.authenticate(request, username=username, password=password)
        if user is not None:
            auth.login(request, user)
        else:
-           # Return error message
-           pass
+           context = {
+               "pagename": "Pythonbin",
+               "errors": ["Wrong username or password"]
+           }
+           return render(request, "pages/index.html", context)
    return redirect(to='home')
 
 
 def logout(request):
     auth.logout(request)
     return redirect(to='home')
+
